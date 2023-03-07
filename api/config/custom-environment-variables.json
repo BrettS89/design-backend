@@ -1,0 +1,10 @@
+{
+  "jwtSecret": "JWT_SECRET",
+  "mongodb": "MONGO_URI",
+  "mongodbTest": "MONGO_URI_TEST",
+  "environment": "NODE_ENV",
+  "sendgridApiKey": "SENDGRID_API_KEY",
+  "aws": {
+    "region": "AWS_REGION"
+  }
+}
