@@ -12,6 +12,7 @@ export const securityTeamSchema = Type.Object(
   {
     _id: ObjectIdSchema(),
     accountId: ObjectIdSchema(),
+    name: Type.String(),
   },
   { $id: 'SecurityTeam', additionalProperties: false }
 )

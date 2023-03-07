@@ -12,7 +12,7 @@ export const designPaletteSchema = Type.Object(
   {
     _id: ObjectIdSchema(),
     accountId: ObjectIdSchema(),
-    name: Type.String(),
+    designSystemId: ObjectIdSchema(),
     colors: Type.Array(
       Type.Object({
         key: Type.String(),
@@ -29,7 +29,7 @@ export const designPaletteResolver = resolve<DesignPalette, HookContext>({})
 export const designPaletteExternalResolver = resolve<DesignPalette, HookContext>({})
 
 // Schema for creating new entries
-export const designPaletteDataSchema = Type.Pick(designPaletteSchema, ['accountId', 'colors'], {
+export const designPaletteDataSchema = Type.Pick(designPaletteSchema, ['accountId', 'designSystemId', 'colors'], {
   $id: 'DesignPaletteData'
 })
 export type DesignPaletteData = Static<typeof designPaletteDataSchema>
@@ -45,7 +45,7 @@ export const designPalettePatchValidator = getValidator(designPalettePatchSchema
 export const designPalettePatchResolver = resolve<DesignPalette, HookContext>({})
 
 // Schema for allowed query properties
-export const designPaletteQueryProperties = Type.Pick(designPaletteSchema, ['_id', 'accountId'])
+export const designPaletteQueryProperties = Type.Pick(designPaletteSchema, ['_id', 'designSystemId', 'accountId'])
 export const designPaletteQuerySchema = Type.Intersect(
   [
     querySyntax(designPaletteQueryProperties),

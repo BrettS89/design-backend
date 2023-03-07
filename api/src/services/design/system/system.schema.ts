@@ -12,7 +12,6 @@ export const designSystemSchema = Type.Object(
   {
     _id: ObjectIdSchema(),
     accountId: ObjectIdSchema(),
-    paletteId: Type.Optional(ObjectIdSchema()),
     name: Type.String(),
   },
   { $id: 'DesignSystem', additionalProperties: false }
@@ -24,7 +23,7 @@ export const designSystemResolver = resolve<DesignSystem, HookContext>({})
 export const designSystemExternalResolver = resolve<DesignSystem, HookContext>({})
 
 // Schema for creating new entries
-export const designSystemDataSchema = Type.Pick(designSystemSchema, ['name', 'accountId', 'paletteId'], {
+export const designSystemDataSchema = Type.Pick(designSystemSchema, ['name', 'accountId'], {
   $id: 'DesignSystemData'
 })
 export type DesignSystemData = Static<typeof designSystemDataSchema>
