@@ -12,6 +12,7 @@ export const designSystemSchema = Type.Object(
   {
     _id: ObjectIdSchema(),
     accountId: ObjectIdSchema(),
+    teamId: ObjectIdSchema(),
     name: Type.String(),
   },
   { $id: 'DesignSystem', additionalProperties: false }

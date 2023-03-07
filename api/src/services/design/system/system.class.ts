@@ -21,6 +21,12 @@ export class DesignSystemService<ServiceParams extends Params = DesignSystemPara
 export const getOptions = (app: Application): MongoDBAdapterOptions => {
   return {
     paginate: app.get('paginate'),
-    Model: app.get('mongodbClient').then((db) => db.collection('design-system'))
+    Model: app.get('mongodbClient')
+      .then((db) => db.collection('design-system'))
+      .then((collection) => {
+        collection.createIndex({ teamId: 1 })
+
+        return collection
+      })
   }
 }

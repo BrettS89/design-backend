@@ -23,6 +23,12 @@ export class DesignVariableService<
 export const getOptions = (app: Application): MongoDBAdapterOptions => {
   return {
     paginate: app.get('paginate'),
-    Model: app.get('mongodbClient').then((db) => db.collection('design-variable'))
+    Model: app.get('mongodbClient')
+      .then((db) => db.collection('design-variable'))
+      .then((collection) => {
+        collection.createIndex({ designSystemId: 1 })
+
+        return collection
+      })
   }
 }

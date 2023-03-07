@@ -26,6 +26,12 @@ export class DesignPaletteService<ServiceParams extends Params = DesignPalettePa
 export const getOptions = (app: Application): MongoDBAdapterOptions => {
   return {
     paginate: app.get('paginate'),
-    Model: app.get('mongodbClient').then((db) => db.collection('design-palette'))
+    Model: app.get('mongodbClient')
+      .then((db) => db.collection('design-palette'))
+      .then((collection) => {
+        collection.createIndex({ designSystemId: 1 })
+
+        return collection
+      })
   }
 }

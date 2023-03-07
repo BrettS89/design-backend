@@ -21,6 +21,12 @@ export class DesignStyleService<ServiceParams extends Params = DesignStyleParams
 export const getOptions = (app: Application): MongoDBAdapterOptions => {
   return {
     paginate: app.get('paginate'),
-    Model: app.get('mongodbClient').then((db) => db.collection('design-style'))
+    Model: app.get('mongodbClient')
+      .then((db) => db.collection('design-style'))
+      .then((collection) => {
+        collection.createIndex({ designSystemId: 1 })
+
+        return collection
+      })
   }
 }
